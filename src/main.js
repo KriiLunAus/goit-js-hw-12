@@ -21,7 +21,8 @@ function fetchPhoto() {
     q:  imagesForSearch.value,
     image_type: "photo",
     orientation: "horizontal",
-    safesearch: true,
+        safesearch: true,
+    
 });
     
  return   fetch(`https://pixabay.com/api/?${options}`)
