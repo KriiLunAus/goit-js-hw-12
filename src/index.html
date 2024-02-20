@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search for images</title>
+    <link rel="stylesheet" href="./css/pixabay.css" />
+  </head>
+  <body>
+    <div class="fieldForToBeFilled">
+      <input
+        class="imagesInput"
+        type="text"
+        placeholder="Search images..."
+        required
+      />
+      <button class="searchImages">Search</button>
+    </div>
+    <span class="loader"></span>
+    <div class="listOfPhotos"></div>
+    <script type="module" src="./main.js"></script>
+    <script type="module" src="./js/pixabay-api.js"></script>
+    <script type="module" src="./js/render-function.js"></script>
+  </body>
+</html>
