@@ -1,3 +1,10 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 li {
   list-style-type: none;
   width: 300px;
@@ -30,6 +37,7 @@ button {
   background-color: #4e75ff;
   color: #fff;
   cursor: pointer;
+  margin-top: 30px;
 }
 
 .fieldForToBeFilled {
@@ -57,7 +65,6 @@ p {
   transform: rotate(45deg);
   background: #fff;
   top: 15px;
-  margin-left: 820px;
 }
 .loader::before {
   content: '';
