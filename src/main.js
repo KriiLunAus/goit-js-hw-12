@@ -3,16 +3,11 @@ import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
-import axios from "axios";
 
 const imagesForSearch = document.querySelector(".imagesInput")
 const btn = document.querySelector(".searchImages");
 const photoList = document.querySelector(".listOfPhotos")
 const loader = document.querySelector(".loader")
-
-let page = 1;
-let perPage = 15;
-let fetchedPhotos = [];
 
 loaderHide();
 
@@ -20,35 +15,72 @@ loaderHide();
 
 function fetchPhoto() {
 
-    return   axios.get(`https://pixabay.com/api/`, {
-        params: {
-        key: "42327867-17db48a54b533eea41b085f18",
-        q:  imagesForSearch.value,
-        image_type: "photo",
-        orientation: "horizontal",
-        safesearch: true,
-        per_page: perPage,
-        page: page,
-    }
-    })
-        .then((response) => {
-            fetchedPhotos = fetchedPhotos.concat(response.data.hits)
-            console.log(fetchedPhotos)
-            return response.data;
-        });
+
+    const options = new URLSearchParams({
+    key: "42327867-17db48a54b533eea41b085f18",
+    q:  imagesForSearch.value,
+    image_type: "photo",
+    orientation: "horizontal",
+    safesearch: true,
+});
     
+ return   fetch(`https://pixabay.com/api/?${options}`)
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error(response.status);
+        }
+        return response.json() ;
+    });
+
 }
 
+//Added button usage
 
-
+btn.addEventListener("click", () => {
+    photoList.innerHTML = "";
+    if (imagesForSearch.value.length !== 0) {
+        loaderShow();
+        setTimeout(() => {
+            
+            fetchPhoto()
+                .then((photos) => {
+                    if (photos.hits.length === 0) {
+                        iziToast.error({
+                            message: "Sorry, there are no images matching your search query. Please try again!",
+                            position: "topRight",
+                        })
+                    } else {
+                        addElements(photos)
+                    }
+                })
+            
+                .catch((error) => {
+                    iziToast.error({
+                        position: "topRight"
+                    })
+                })
+            
+                .finally(() => {
+                    loaderHide();
+                })
+            
+            
+        }, 1500);
+    } else {
+        iziToast.error({
+            message: "Field is empty. Please type something!",
+            position: "topRight"
+        })
+    }
+});
 
 
 //Added elements to page
 
-function addElements(fetchedPhotos) {
+function addElements(photos) {
 
 
-    const html = fetchedPhotos
+    const html = photos.hits
         .map((photo) => {
             return `
             <li class ="listElement">
@@ -70,11 +102,16 @@ function addElements(fetchedPhotos) {
     
     photoList.insertAdjacentHTML("beforeend", html);
 
+    
+
+    //Added simplelightbox 
+
 
     const gallery = new SimpleLightbox('.listElement a', {
         docClose: false,
     });
 
+    gallery.refresh();
 }
 
 function loaderShow() {
@@ -89,44 +126,3 @@ function loaderHide() {
 
 
 
-//Added button usage
-
-btn.addEventListener("click", () => {
-    photoList.innerHTML = "";
-    if (imagesForSearch.value.length !== 0) {
-        loaderShow();
-        setTimeout(() => {
-            
-            fetchPhoto()
-                .then((photos) => {
-                    if (photos.hits.length === 0) {
-                        iziToast.error({
-                            message: "Sorry, there are no images matching your search query. Please try again!",
-                            position: "topRight",
-                        })
-                    } else {
-                        addElements(fetchedPhotos)
-                    }
-                })
-            
-                .catch((error) => {
-                    iziToast.error({
-                        position: "topRight"
-                    })
-                })
-            
-                .finally(() => {
-                    loaderHide();
-                    page += 1;
-                    btn.textContent = "Load more photos";
-                })
-            
-            
-        }, 1500);
-    } else {
-        iziToast.error({
-            message: "Field is empty. Please type something!",
-            position: "topRight"
-        })
-    }
-});
