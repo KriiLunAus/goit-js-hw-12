@@ -1,16 +1,16 @@
-import{i as a,a as h,S as g}from"./assets/vendor-b42c18af.js";(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))l(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const n of t.addedNodes)n.tagName==="LINK"&&n.rel==="modulepreload"&&l(n)}).observe(document,{childList:!0,subtree:!0});function r(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?t.credentials="include":e.crossOrigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function l(e){if(e.ep)return;e.ep=!0;const t=r(e);fetch(e.href,t)}})();const d=document.querySelector(".imagesInput"),c=document.querySelector(".searchImages"),u=document.querySelector(".listOfPhotos"),p=document.querySelector(".loader");let m=1,y=15,i=[];f();function L(){return h.get("https://pixabay.com/api/",{params:{key:"42327867-17db48a54b533eea41b085f18",q:d.value,image_type:"photo",orientation:"horizontal",safesearch:!0,per_page:y,page:m}}).then(o=>(i=i.concat(o.data.hits),console.log(i),o.data))}function b(o){const s=o.map(r=>`
+import{i as n,S as f}from"./assets/vendor-7659544d.js";(function(){const r=document.createElement("link").relList;if(r&&r.supports&&r.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))o(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const i of t.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&o(i)}).observe(document,{childList:!0,subtree:!0});function a(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?t.credentials="include":e.crossOrigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function o(e){if(e.ep)return;e.ep=!0;const t=a(e);fetch(e.href,t)}})();const l=document.querySelector(".imagesInput"),m=document.querySelector(".searchImages"),c=document.querySelector(".listOfPhotos"),u=document.querySelector(".loader");d();function p(){const s=new URLSearchParams({key:"42327867-17db48a54b533eea41b085f18",q:l.value,image_type:"photo",orientation:"horizontal",safesearch:!0});return fetch(`https://pixabay.com/api/?${s}`).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()})}m.addEventListener("click",()=>{c.innerHTML="",l.value.length!==0?(y(),setTimeout(()=>{p().then(s=>{s.hits.length===0?n.error({message:"Sorry, there are no images matching your search query. Please try again!",position:"topRight"}):h(s)}).catch(s=>{n.error({position:"topRight"})}).finally(()=>{d()})},1500)):n.error({message:"Field is empty. Please type something!",position:"topRight"})});function h(s){const r=s.hits.map(o=>`
             <li class ="listElement">
             <a
             class ="largePhotoLink"
-            href="${r.largeImageURL}">
+            href="${o.largeImageURL}">
             <img
             class ="photo"
-            src="${r.previewURL}">
+            src="${o.previewURL}">
             </a>
-            <p>Likes: ${r.likes}</p>
-            <p>Views: ${r.views}</p>
-            <p>Comments: ${r.comments}</p>
-            <p>Downloads: ${r.downloads}</p>
+            <p>Likes: ${o.likes}</p>
+            <p>Views: ${o.views}</p>
+            <p>Comments: ${o.comments}</p>
+            <p>Downloads: ${o.downloads}</p>
             </li>
-            `).join("");u.insertAdjacentHTML("beforeend",s),new g(".listElement a",{docClose:!1})}function P(){p.style.display="block"}function f(){p.style.display="none"}c.addEventListener("click",()=>{u.innerHTML="",d.value.length!==0?(P(),setTimeout(()=>{L().then(o=>{o.hits.length===0?a.error({message:"Sorry, there are no images matching your search query. Please try again!",position:"topRight"}):b(i)}).catch(o=>{a.error({position:"topRight"})}).finally(()=>{f(),m+=1,c.textContent="Load more photos"})},1500)):a.error({message:"Field is empty. Please type something!",position:"topRight"})});
+            `).join("");c.insertAdjacentHTML("beforeend",r),new f(".listElement a",{docClose:!1}).refresh()}function y(){u.style.display="block"}function d(){u.style.display="none"}
 //# sourceMappingURL=commonHelpers.js.map
