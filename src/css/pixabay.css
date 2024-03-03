@@ -86,7 +86,7 @@ body {
 }
 
 .searchMoreImages {
-  display: block;
+  display: none;
   margin: 20px auto;
   padding: 10px 20px;
   background-color: #007bff;
