@@ -11,7 +11,6 @@ const loader = document.querySelector(".loader");
 const btnMore = document.querySelector(".searchMoreImages");
 
 loaderHide();
- btnMore.style.display = "none";
 
 
 
@@ -148,7 +147,10 @@ btnMore.addEventListener("click", event => {
                 let elementOfList = document.querySelector(".listElement");
                 elementOfList = elementOfList.getBoundingClientRect().height;
                 
-                window.scrollBy(
+                window.scrollBy({
+                top: `${elementOfList*4}`,
+                behavior: "smooth"
+                }
                 )
 
             })

@@ -3,6 +3,9 @@ li {
   width: 300px;
   border: 1px solid;
 }
+.searchMoreImages {
+  display: none;
+}
 
 .listOfPhotos {
   display: flex;
