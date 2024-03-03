@@ -8,15 +8,18 @@
     <link rel="stylesheet" href="./css/pixabay.css" />
   </head>
   <body>
-    <div class="fieldForToBeFilled">
-      <input
-        class="imagesInput"
-        type="text"
-        placeholder="Search images..."
-        required
-      />
-    </div>
-    <button class="searchImages">Search</button>
+    <form action="" class="searchForm">
+      <div class="fieldForToBeFilled">
+        <input
+          name="query"
+          class="imagesInput"
+          type="text"
+          placeholder="Search images..."
+          required
+        />
+      </div>
+      <button type="submit" class="searchImages">Search</button>
+    </form>
     <div class="listOfPhotos"></div>
     <span class="loader"></span>
     <button class="searchMoreImages">Search more</button>

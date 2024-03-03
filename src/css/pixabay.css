@@ -1,10 +1,3 @@
-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 li {
   list-style-type: none;
   width: 300px;
@@ -20,17 +13,8 @@ li {
   margin-top: 40px;
 }
 
-input {
-  width: 272px;
-  height: 40px;
-  border-radius: 4px;
-  outline: none;
-  border: 1px solid;
-  padding-left: 16px;
-}
-
 button {
-  width: 90px;
+  width: 150px;
   height: 44px;
   border-radius: 4px;
   border: none;
@@ -40,21 +24,88 @@ button {
   margin-top: 30px;
 }
 
-.fieldForToBeFilled {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  margin-top: 100px;
+p {
+  padding: 5px;
 }
 
-.photo {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+.searchForm {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.imagesInput {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.searchImages {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.searchImages:hover {
+  background-color: #0056b3;
+}
+
+.listOfPhotos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.listOfPhotos img {
+  margin: 10px;
+  max-width: 280px;
+  border-radius: 5px;
   width: 300px;
   height: 200px;
 }
 
-p {
-  padding: 5px;
+.searchMoreImages {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.searchMoreImages:hover {
+  background-color: #0056b3;
+}
+
+/* Keyframe animation for loader */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .loader {
@@ -62,6 +113,7 @@ p {
   height: 48px;
   border-radius: 50%;
   position: relative;
+  margin: auto;
   transform: rotate(45deg);
   background: #fff;
   top: 15px;
