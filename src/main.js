@@ -80,7 +80,7 @@ function loaderHide() {
     loader.style.display = "none";
 }
 
-let page;
+let page = 1;
 let currentQuery;
 let currentHits = 0;
 
